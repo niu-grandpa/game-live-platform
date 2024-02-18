@@ -9,17 +9,13 @@ export const Actions = async () => {
 
   return (
     <div className='flex items-center justify-end gap-x-2 ml-4 lg:ml-0'>
-      {!user && (
+      {!user ? (
         <SignInButton>
-          <Button size='sm' variant='primary'>
-            登录
-          </Button>
+          <Button variant='primary'>登录</Button>
         </SignInButton>
-      )}
-      {!!user && (
+      ) : (
         <div className='flex items-center gap-x-4'>
           <Button
-            size='sm'
             variant='ghost'
             className='text-muted-foreground hover:text-primary'
             asChild>

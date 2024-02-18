@@ -1,5 +1,5 @@
-import { db } from "@/lib/db";
-import { getSelf } from "@/lib/auth-service";
+import { getSelf } from '@/lib/auth-service';
+import { db } from '@/lib/db';
 
 export const getFollowedUsers = async () => {
   try {
@@ -31,14 +31,14 @@ export const getFollowedUsers = async () => {
         {
           following: {
             stream: {
-              isLive: "desc",
+              isLive: 'desc',
             },
           },
         },
         {
-          createdAt: "desc"
+          createdAt: 'desc',
         },
-      ]
+      ],
     });
 
     return followedUsers;
@@ -56,7 +56,7 @@ export const isFollowingUser = async (id: string) => {
     });
 
     if (!otherUser) {
-      throw new Error("User not found");
+      throw new Error('用户不存在');
     }
 
     if (otherUser.id === self.id) {
@@ -84,11 +84,11 @@ export const followUser = async (id: string) => {
   });
 
   if (!otherUser) {
-    throw new Error("User not found");
+    throw new Error('用户不存在');
   }
 
   if (otherUser.id === self.id) {
-    throw new Error("Cannot follow yourself");
+    throw new Error('不能关注自己');
   }
 
   const existingFollow = await db.follow.findFirst({
@@ -99,7 +99,7 @@ export const followUser = async (id: string) => {
   });
 
   if (existingFollow) {
-    throw new Error("Already following");
+    throw new Error('用户已被关注');
   }
 
   const follow = await db.follow.create({
@@ -126,11 +126,11 @@ export const unfollowUser = async (id: string) => {
   });
 
   if (!otherUser) {
-    throw new Error("User not found");
+    throw new Error('用户不存在');
   }
 
   if (otherUser.id === self.id) {
-    throw new Error("Cannot unfollow yourself");
+    throw new Error('不能取消关注自己');
   }
 
   const existingFollow = await db.follow.findFirst({
@@ -141,7 +141,7 @@ export const unfollowUser = async (id: string) => {
   });
 
   if (!existingFollow) {
-    throw new Error("Not following");
+    throw new Error('未关注该用户');
   }
 
   const follow = await db.follow.delete({

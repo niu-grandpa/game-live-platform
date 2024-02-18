@@ -1,16 +1,16 @@
-import { db } from "@/lib/db";
-import { getSelf } from "@/lib/auth-service";
+import { getSelf } from '@/lib/auth-service';
+import { db } from '@/lib/db';
 
 export const isBlockedByUser = async (id: string) => {
   try {
     const self = await getSelf();
 
     const otherUser = await db.user.findUnique({
-      where: { id }
+      where: { id },
     });
 
     if (!otherUser) {
-      throw new Error("User not found");
+      throw new Error('用户不存在');
     }
 
     if (otherUser.id === self.id) {
@@ -36,15 +36,15 @@ export const blockUser = async (id: string) => {
   const self = await getSelf();
 
   if (self.id === id) {
-    throw new Error("Cannot block yourself");
+    throw new Error('不能把自己加入黑名单');
   }
 
   const otherUser = await db.user.findUnique({
-    where: { id }
+    where: { id },
   });
 
   if (!otherUser) {
-    throw new Error("User not found");
+    throw new Error('用户不存在');
   }
 
   const existingBlock = await db.block.findUnique({
@@ -57,7 +57,7 @@ export const blockUser = async (id: string) => {
   });
 
   if (existingBlock) {
-    throw new Error("Already blocked");
+    throw new Error('该用户已在黑名单中');
   }
 
   const block = await db.block.create({
@@ -77,7 +77,7 @@ export const unblockUser = async (id: string) => {
   const self = await getSelf();
 
   if (self.id === id) {
-    throw new Error("Cannot unblock yourself");
+    throw new Error('解除黑名单的用户不能是自己');
   }
 
   const otherUser = await db.user.findUnique({
@@ -85,7 +85,7 @@ export const unblockUser = async (id: string) => {
   });
 
   if (!otherUser) {
-    throw new Error("User not found");
+    throw new Error('用户不存在');
   }
 
   const existingBlock = await db.block.findUnique({
@@ -98,7 +98,7 @@ export const unblockUser = async (id: string) => {
   });
 
   if (!existingBlock) {
-    throw new Error("Not blocked");
+    throw new Error('用户不在黑名单中');
   }
 
   const unblock = await db.block.delete({
