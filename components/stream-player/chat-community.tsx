@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useMemo, useState } from "react";
-import { useDebounce } from "usehooks-ts";
-import { useParticipants } from "@livekit/components-react";
-import { LocalParticipant, RemoteParticipant } from "livekit-client";
+import { useParticipants } from '@livekit/components-react';
+import { LocalParticipant, RemoteParticipant } from 'livekit-client';
+import { useMemo, useState } from 'react';
+import { useDebounce } from 'usehooks-ts';
 
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from '@/components/ui/input';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-import { CommunityItem } from "./community-item";
+import { CommunityItem } from './community-item';
 
 interface ChatCommunityProps {
   hostName: string;
   viewerName: string;
   isHidden: boolean;
-};
+}
 
 export const ChatCommunity = ({
   hostName,
   viewerName,
-  isHidden
+  isHidden,
 }: ChatCommunityProps) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const debouncedValue = useDebounce<string>(value, 500);
 
   const participants = useParticipants();
@@ -33,39 +33,39 @@ export const ChatCommunity = ({
   const filteredParticipants = useMemo(() => {
     const deduped = participants.reduce((acc, participant) => {
       const hostAsViewer = `host-${participant.identity}`;
-      if (!acc.some((p) => p.identity === hostAsViewer)) {
+      if (!acc.some(p => p.identity === hostAsViewer)) {
         acc.push(participant);
       }
       return acc;
     }, [] as (RemoteParticipant | LocalParticipant)[]);
 
-    return deduped.filter((participant) => {
-      return participant.name?.toLowerCase().includes(debouncedValue.toLowerCase())
+    return deduped.filter(participant => {
+      return participant.name
+        ?.toLowerCase()
+        .includes(debouncedValue.toLowerCase());
     });
   }, [participants, debouncedValue]);
- 
+
   if (isHidden) {
     return (
-      <div className="flex flex-1 items-center justify-center">
-        <p className="text-sm text-muted-foreground">
-          Community is disabled
-        </p>
+      <div className='flex flex-1 items-center justify-center'>
+        <p className='text-sm text-muted-foreground'>社区已禁用</p>
       </div>
     );
   }
 
   return (
-    <div className="p-4">
+    <div className='p-4'>
       <Input
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search community"
-        className="border-white/10"
+        onChange={e => onChange(e.target.value)}
+        placeholder='Search community'
+        className='border-white/10'
       />
-      <ScrollArea className="gap-y-2 mt-4">
-        <p className="text-center text-sm text-muted-foreground hidden last:block p-2">
-          No results
+      <ScrollArea className='gap-y-2 mt-4'>
+        <p className='text-center text-sm text-muted-foreground hidden last:block p-2'>
+          无结果
         </p>
-        {filteredParticipants.map((participant) => (
+        {filteredParticipants.map(participant => (
           <CommunityItem
             key={participant.identity}
             hostName={hostName}
@@ -76,5 +76,5 @@ export const ChatCommunity = ({
         ))}
       </ScrollArea>
     </div>
-  )
-}
+  );
+};

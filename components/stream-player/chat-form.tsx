@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
-import { ChatInfo } from "./chat-info";
+import { ChatInfo } from './chat-info';
 
 interface ChatFormProps {
   onSubmit: () => void;
@@ -17,7 +17,7 @@ interface ChatFormProps {
   isFollowersOnly: boolean;
   isFollowing: boolean;
   isDelayed: boolean;
-};
+}
 
 export const ChatForm = ({
   onSubmit,
@@ -29,9 +29,10 @@ export const ChatForm = ({
   isDelayed,
 }: ChatFormProps) => {
   const [isDelayBlocked, setIsDelayBlocked] = useState(false);
-
+  // 发言权限是否仅对关注者开放
   const isFollowersOnlyAndNotFollowing = isFollowersOnly && !isFollowing;
-  const isDisabled = isHidden || isDelayBlocked || isFollowersOnlyAndNotFollowing;
+  const isDisabled =
+    isHidden || isDelayBlocked || isFollowersOnlyAndNotFollowing;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,41 +49,32 @@ export const ChatForm = ({
     } else {
       onSubmit();
     }
-  }
+  };
 
   if (isHidden) {
     return null;
   }
 
   return (
-    <form 
-      onSubmit={handleSubmit} 
-      className="flex flex-col items-center gap-y-4 p-3"
-    >
-      <div className="w-full">
-        <ChatInfo
-          isDelayed={isDelayed}
-          isFollowersOnly={isFollowersOnly}
-        />
+    <form
+      onSubmit={handleSubmit}
+      className='flex flex-col items-center gap-y-4 p-3'>
+      <div className='w-full'>
+        <ChatInfo isDelayed={isDelayed} isFollowersOnly={isFollowersOnly} />
         <Input
-          onChange={(e) => onChange(e.target.value)}
+          onChange={e => onChange(e.target.value)}
           value={value}
           disabled={isDisabled}
-          placeholder="Send a message"
+          placeholder='说点什么吧'
           className={cn(
-            "border-white/10",
-            (isFollowersOnly || isDelayed) && "rounded-t-none border-t-0"
+            'border-white/10',
+            (isFollowersOnly || isDelayed) && 'rounded-t-none border-t-0'
           )}
         />
       </div>
-      <div className="ml-auto">
-        <Button
-          type="submit"
-          variant="primary"
-          size="sm"
-          disabled={isDisabled}
-        >
-          Chat
+      <div className='ml-auto'>
+        <Button type='submit' variant='primary' size='sm' disabled={isDisabled}>
+          发送
         </Button>
       </div>
     </form>
@@ -91,11 +83,11 @@ export const ChatForm = ({
 
 export const ChatFormSkeleton = () => {
   return (
-    <div className="flex flex-col items-center gap-y-4 p-3">
-      <Skeleton className="w-full h-10" />
-      <div className="flex items-center gap-x-2 ml-auto">
-        <Skeleton className="h-7 w-7" />
-        <Skeleton className="h-7 w-12" />
+    <div className='flex flex-col items-center gap-y-4 p-3'>
+      <Skeleton className='w-full h-10' />
+      <div className='flex items-center gap-x-2 ml-auto'>
+        <Skeleton className='h-7 w-7' />
+        <Skeleton className='h-7 w-12' />
       </div>
     </div>
   );
