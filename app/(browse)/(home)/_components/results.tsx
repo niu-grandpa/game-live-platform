@@ -8,7 +8,7 @@ export const Results = async () => {
 
   return (
     <div>
-      <h2 className='text-lg font-semibold mb-4'>为您推荐以下直播</h2>
+      <h2 className='text-lg font-semibold mb-4 text-black'>视频直播列表</h2>
       {data.length === 0 && (
         <div className='text-muted-foreground text-sm'>暂无直播</div>
       )}

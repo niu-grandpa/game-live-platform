@@ -25,7 +25,7 @@ export const Toggle = () => {
       )}
       {!collapsed && (
         <div className='p-3 pl-6 mb-2 flex items-center w-full'>
-          <p className='font-semibold text-primary'>个性化推荐</p>
+          <p className='font-semibold text-primary'>用户推荐</p>
           <Hint label={label} side='right' asChild>
             <Button
               onClick={onCollapse}

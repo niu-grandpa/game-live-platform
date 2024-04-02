@@ -16,7 +16,7 @@ export const ChatList = ({ messages, isHidden }: ChatListProps) => {
     return (
       <div className='flex flex-1 items-center justify-center'>
         <p className='text-sm text-muted-foreground'>
-          {isHidden ? '禁言中' : '欢迎大家来聊天!'}
+          {isHidden ? '聊天未开启' : '欢迎大家来聊天!'}
         </p>
       </div>
     );

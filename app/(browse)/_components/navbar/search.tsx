@@ -38,21 +38,27 @@ export const Search = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className='relative w-full lg:w-[400px] flex items-center'>
-      <Input
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        placeholder='搜索用户'
-        className='rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
-      />
-      {value && (
-        <X
-          className='absolute top-2.5 right-14 h-5 w-5 text-muted-foreground cursor-pointer hover:opacity-75 transition'
-          onClick={onClear}
+      className='border-solid border-2 border-[#f9f9fa]  flex items-center rounded-lg'>
+      <div className='relative w-full lg:w-[340px]'>
+        <Input
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          placeholder='搜索用户'
+          className='rounded-r-none'
         />
-      )}
-      <Button type='submit' variant='secondary' className='rounded-l-none'>
-        <SearchIcon className='h-5 w-5 text-muted-foreground' />
+        {value && (
+          <X
+            className='absolute top-2.5 right-[8px] h-5 w-5 text-muted-foreground cursor-pointer hover:opacity-75 transition'
+            onClick={onClear}
+          />
+        )}
+      </div>
+      <Button type='submit' variant='primary' className='rounded-l-none'>
+        <SearchIcon
+          className='h-5 w-5 text-muted-foreground'
+          style={{ color: '#fff' }}
+        />
+        &nbsp;&nbsp;搜索
       </Button>
     </form>
   );

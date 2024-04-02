@@ -24,7 +24,7 @@ export const AboutCard = ({
 
   return (
     <div className='px-4'>
-      <div className='group rounded-xl bg-background p-6 lg:p-10 flex flex-col gap-y-3'>
+      <div className='group rounded-xl bg-white shadow-lg text-black p-6 lg:p-10 flex flex-col gap-y-3'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-x-2 font-semibold text-lg lg:text-2xl'>
             关于 {hostName}
@@ -33,8 +33,7 @@ export const AboutCard = ({
           {isHost && <BioModal initialValue={bio} />}
         </div>
         <div className='text-sm text-muted-foreground'>
-          <span className='font-semibold text-primary'>{followedByCount}</span>{' '}
-          位关注者
+          <span className='font-semibold'>{followedByCount}</span> 位关注者
         </div>
         <p className='text-sm'>{bio || '该用户未设置个性签名'}</p>
       </div>

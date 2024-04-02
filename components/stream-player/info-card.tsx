@@ -29,15 +29,15 @@ export const InfoCard = ({
     <div className='px-4'>
       <div className='rounded-xl bg-background'>
         <div className='flex items-center gap-x-2.5 p-4'>
-          <div className='rounded-md bg-blue-600 p-2 h-auto w-auto'>
-            <Pencil className='h-5 w-5' />
+          <div className='rounded-md bg-[#fe2c55] p-2 h-auto w-auto'>
+            <Pencil className='h-5 w-5 text-white' />
           </div>
           <div>
             <h2 className='text-sm lg:text-lg font-semibold capitalize'>
               编辑直播信息
             </h2>
             <p className='text-muted-foreground text-xs lg:text-sm'>
-              最大化您的可见度
+              提升您的曝光度
             </p>
           </div>
           <InfoModal initialName={name} initialThumbnailUrl={thumbnailUrl} />
@@ -49,7 +49,7 @@ export const InfoCard = ({
             <p className='text-sm font-semibold'>{name}</p>
           </div>
           <div>
-            <h3 className='text-sm text-muted-foreground mb-2'>缩略图</h3>
+            <h3 className='text-sm text-muted-foreground mb-2'>封面预览</h3>
             {thumbnailUrl && (
               <div className='relative aspect-video rounded-md overflow-hidden w-[200px] border border-white/10'>
                 <Image

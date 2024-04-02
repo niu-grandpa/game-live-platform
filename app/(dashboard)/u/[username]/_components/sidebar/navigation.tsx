@@ -27,7 +27,7 @@ export const Navigation = () => {
       icon: MessageSquare,
     },
     {
-      label: '观看用户',
+      label: '观众管理',
       href: `/u/${user?.username}/community`,
       icon: Users,
     },

@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { toast } from "sonner";
-import { useTransition } from "react";
+import { useTransition } from 'react';
+import { toast } from 'sonner';
 
-import { Switch } from "@/components/ui/switch";
-import { updateStream } from "@/actions/stream";
-import { Skeleton } from "@/components/ui/skeleton";
+import { updateStream } from '@/actions/stream';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Switch } from '@/components/ui/switch';
 
-type FieldTypes = "isChatEnabled" | "isChatDelayed" | "isChatFollowersOnly";
+type FieldTypes = 'isChatEnabled' | 'isChatDelayed' | 'isChatFollowersOnly';
 
 interface ToggleCardProps {
   label: string;
   value: boolean;
   field: FieldTypes;
-};
+}
 
 export const ToggleCard = ({
   label,
@@ -24,25 +24,22 @@ export const ToggleCard = ({
 
   const onChange = () => {
     startTransition(() => {
-       updateStream({ [field]: !value })
-        .then(() => toast.success("Chat settings updated!"))
-        .catch(() => toast.error("Something went wrong"));
+      updateStream({ [field]: !value })
+        .then(() => toast.success('设置成功'))
+        .catch(() => toast.error('出错了'));
     });
   };
 
   return (
-    <div className="rounded-xl bg-muted p-6">
-      <div className="flex items-center justify-between">
-        <p className="font-semibold shrink-0">
-          {label}
-        </p>
-        <div className="space-y-2">
+    <div className='rounded-xl bg-muted p-6'>
+      <div className='flex items-center justify-between'>
+        <p className='font-semibold shrink-0'>{label}</p>
+        <div className='space-y-2'>
           <Switch
             disabled={isPending}
             onCheckedChange={onChange}
-            checked={value}
-          >
-            {value ? "On" : "Off"}
+            checked={value}>
+            {value ? '开启' : '关闭'}
           </Switch>
         </div>
       </div>
@@ -51,7 +48,5 @@ export const ToggleCard = ({
 };
 
 export const ToggleCardSkeleton = () => {
-  return (
-    <Skeleton className="rounded-xl p-10 w-full" />
-  );
+  return <Skeleton className='rounded-xl p-10 w-full' />;
 };

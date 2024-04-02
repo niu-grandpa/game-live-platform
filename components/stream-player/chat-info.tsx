@@ -1,48 +1,44 @@
-import { useMemo } from "react";
-import { Info } from "lucide-react";
+import { Info } from 'lucide-react';
+import { useMemo } from 'react';
 
-import { Hint } from "@/components/hint";
+import { Hint } from '@/components/hint';
 
 interface ChatInfoProps {
   isDelayed: boolean;
   isFollowersOnly: boolean;
-};
+}
 
-export const ChatInfo = ({
-  isDelayed,
-  isFollowersOnly
-}: ChatInfoProps) => {
+export const ChatInfo = ({ isDelayed, isFollowersOnly }: ChatInfoProps) => {
   const hint = useMemo(() => {
     if (isFollowersOnly && !isDelayed) {
-      return "Only followers can chat";
+      return '只有关注者才能聊天';
     }
 
     if (isDelayed && !isFollowersOnly) {
-      return "Messages are delayed by 3 seconds";
+      return '消息延迟3秒';
     }
 
     if (isDelayed && isFollowersOnly) {
-      return "Only followers can chat. Messages are delayed by 3 seconds"
+      return '只有关注者才能聊天并且消息延迟3秒';
     }
 
-    return "";
+    return '';
   }, [isDelayed, isFollowersOnly]);
-
 
   const label = useMemo(() => {
     if (isFollowersOnly && !isDelayed) {
-      return "Followers only";
+      return '仅限关注者';
     }
 
     if (isDelayed && !isFollowersOnly) {
-      return "Slow mode";
+      return '慢速模式';
     }
 
     if (isDelayed && isFollowersOnly) {
-      return "Followers only and slow mode"
+      return '仅限关注者并且慢速模式';
     }
 
-    return "";
+    return '';
   }, [isDelayed, isFollowersOnly]);
 
   if (!isDelayed && !isFollowersOnly) {
@@ -50,13 +46,11 @@ export const ChatInfo = ({
   }
 
   return (
-    <div className="p-2 text-muted-foreground bg-white/5 border border-white/10 w-full rounded-t-md flex items-center gap-x-2">
+    <div className='p-2 text-muted-foreground bg-white/5 border border-white/10 w-full rounded-t-md flex items-center gap-x-2'>
       <Hint label={hint}>
-        <Info className="h-4 w-4" />
+        <Info className='h-4 w-4' />
       </Hint>
-      <p className="text-xs font-semibold">
-        {label}
-      </p>
+      <p className='text-xs font-semibold'>{label}</p>
     </div>
   );
 };
