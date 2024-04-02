@@ -1,61 +1,55 @@
-# Fullstack Twitch Clone: Next.js 14, Livestreaming, React, Prisma, Stripe, Tailwind, MySQL
+# 仿 Twitch 的全栈SSR项目: Next.js 14, Livestreaming, React, Prisma, Stripe, Tailwind, MySQL
 
-![Twitch Clone Thumbnail (3)](https://github.com/AntonioErdeljac/next14-twitch-clone/assets/23248726/6e0153f1-ab30-4924-9f06-13d2f46ff3b5)
+该项目基于 Next.js, Livestreaming, React, Prisma, Stripe, Tailwind, MySQL
 
-
-
-This is a repository for Fullstack Trello Clone: Next.js 14, Livestreaming, React, Prisma, Stripe, Tailwind, MySQL
-
-[VIDEO TUTORIAL](https://www.youtube.com/watch?v=a02JAryRPVU)
-
-Key Features:
-- 📡 Streaming using RTMP / WHIP protocols 
-- 🌐 Generating ingress
-- 🔗 Connecting Next.js app to OBS / Your favorite streaming software 
-- 🔐 Authentication 
-- 📸 Thumbnail upload
-- 👀 Live viewer count 
-- 🚦 Live statuses 
-- 💬 Real-time chat using sockets 
-- 🎨 Unique color for each viewer in chat 
-- 👥 Following system 
-- 🚫 Blocking system 
-- 👢 Kicking participants from a stream in real-time 
-- 🎛️ Streamer / Creator Dashboard 
-- 🐢 Slow chat mode 
-- 🔒 Followers only chat mode 
-- 📴 Enable / Disable chat 
-- 🔽 Collapsible layout (hide sidebars, chat etc, theatre mode etc.) 
-- 📚 Sidebar following & recommendations tab 
-- 🏠 Home page recommending streams, sorted by live first 
-- 🔍 Search results page with a different layout 
-- 🔄 Syncing user information to our DB using Webhooks 
-- 📡 Syncing live status information to our DB using Webhooks 
-- 🤝 Community tab 
-- 🎨 Beautiful design
-- ⚡ Blazing fast application 
-- 📄 SSR (Server-Side Rendering) 
-- 🗺️ Grouped routes & layouts 
+特性:
+- 📡 使用RTMP/WHIP协议进行视频流传输
+- 🌐 生成入口（ingress）
+- 🔗 将Next.js应用程序连接到OBS或其他喜爱的流媒体软件
+- 🔐 认证机制
+- 📸 上传缩略图
+- 👀 实时查看观众数量
+- 🚦 显示直播状态 
+- 💬 使用Sokect实现的实时聊天功能
+- 🎨 聊天中为每个观众分配独特颜色 
+- 👥 关注系统
+- 🚫 屏蔽系统
+- 👢 实时从直播中踢出参与者的功能
+- 🎛️ 为流媒体主或创建者提供的仪表盘
+- 🐢 慢聊天模式
+- 🔒 仅限关注者的聊天模式
+- 📴 启用/禁用聊天功能
+- 🔽 可折叠布局（隐藏侧边栏、聊天等，剧场模式等）
+- 📚 侧边栏关注和推荐标签页
+- 🏠 首页推荐直播，按实时直播优先排序
+- 🔍 具有不同布局的搜索结果页面
+- 🔄 使用Webhooks同步用户信息到数据库
+- 📡 使用Webhooks同步直播状态信息到数据库
+- 🤝 社区标签页
+- 🎨 美观的设计
+- ⚡ 极速的应用性能
+- 📄 服务器端渲染（SSR）
+- 🗺️ 分组的路由和布局
 - 🗃️ MySQL
-- 🚀 Deployment
+- 🚀 部署
 
-### Prerequisites
+### 前置条件
 
-**Node version 18.17 or later**
+**Node 版本 18.17 或更高**
 
-### Cloning the repository
+### 克隆仓库
 
 ```shell
 git clone https://github.com/AntonioErdeljac/next14-twitch-clone.git
 ```
 
-### Install packages
+### 安装
 
 ```shell
 npm i
 ```
 
-### Setup .env file
+### .env 环境文件
 
 
 ```js
@@ -78,9 +72,9 @@ UPLOADTHING_SECRET=
 UPLOADTHING_APP_ID=
 ```
 
-### Setup Prisma
+### 安装 Prisma
 
-Add MySQL Database (I used PlanetScale)
+添加 MySQL 数据库 (本人使用的是在线部署的 SQLPub)
 
 ```shell
 npx prisma generate
@@ -88,16 +82,8 @@ npx prisma db push
 
 ```
 
-### Start the app
+### 运行项目
 
 ```shell
 npm run dev
 ```
-
-## Available commands
-
-Running commands with npm `npm run [command]`
-
-| command         | description                              |
-| :-------------- | :--------------------------------------- |
-| `dev`           | Starts a development instance of the app |
