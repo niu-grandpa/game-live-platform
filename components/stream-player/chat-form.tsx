@@ -58,7 +58,7 @@ export const ChatForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className='flex flex-col items-center gap-y-4 p-3'>
+      className='flex flex-col items-center gap-y-4 p-3 border-t border-gray-300'>
       <div className='w-full'>
         <ChatInfo isDelayed={isDelayed} isFollowersOnly={isFollowersOnly} />
         <Input

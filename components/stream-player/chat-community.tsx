@@ -58,8 +58,8 @@ export const ChatCommunity = ({
     <div className='p-4'>
       <Input
         onChange={e => onChange(e.target.value)}
-        placeholder='Search community'
-        className='border-white/10'
+        placeholder='搜索社区'
+        className='border-[#ccc]'
       />
       <ScrollArea className='gap-y-2 mt-4'>
         <p className='text-center text-sm text-muted-foreground hidden last:block p-2'>

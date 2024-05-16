@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import { ConnectionState } from "livekit-client";
-import { useMediaQuery } from "usehooks-ts";
-import { 
+import {
   useChat,
-  useConnectionState, 
-  useRemoteParticipant
-} from "@livekit/components-react";
+  useConnectionState,
+  useRemoteParticipant,
+} from '@livekit/components-react';
+import { ConnectionState } from 'livekit-client';
+import { useEffect, useMemo, useState } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 
-import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar";
+import { ChatVariant, useChatSidebar } from '@/store/use-chat-sidebar';
 
-import { ChatForm, ChatFormSkeleton } from "./chat-form";
-import { ChatList, ChatListSkeleton } from "./chat-list";
-import { ChatHeader, ChatHeaderSkeleton } from "./chat-header";
-import { ChatCommunity } from "./chat-community";
+import { ChatCommunity } from './chat-community';
+import { ChatForm, ChatFormSkeleton } from './chat-form';
+import { ChatHeader, ChatHeaderSkeleton } from './chat-header';
+import { ChatList, ChatListSkeleton } from './chat-list';
 
 interface ChatProps {
   hostName: string;
@@ -24,7 +24,8 @@ interface ChatProps {
   isChatEnabled: boolean;
   isChatDelayed: boolean;
   isChatFollowersOnly: boolean;
-};
+  onMessage?: (value: string) => void;
+}
 
 export const Chat = ({
   hostName,
@@ -33,18 +34,19 @@ export const Chat = ({
   isFollowing,
   isChatEnabled,
   isChatDelayed,
-  isChatFollowersOnly
+  onMessage,
+  isChatFollowersOnly,
 }: ChatProps) => {
   const matches = useMediaQuery('(max-width: 1024px)');
-  const { variant, onExpand } = useChatSidebar((state) => state);
+  const { variant, onExpand } = useChatSidebar(state => state);
   const connectionState = useConnectionState();
   const participant = useRemoteParticipant(hostIdentity);
 
-  const isOnline = participant && connectionState === ConnectionState.Connected
+  const isOnline = participant && connectionState === ConnectionState.Connected;
 
   const isHidden = !isChatEnabled || !isOnline;
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const { chatMessages: messages, send } = useChat();
 
   useEffect(() => {
@@ -59,9 +61,9 @@ export const Chat = ({
 
   const onSubmit = () => {
     if (!send) return;
-
     send(value);
-    setValue("");
+    onMessage?.(value);
+    setValue('');
   };
 
   const onChange = (value: string) => {
@@ -69,14 +71,11 @@ export const Chat = ({
   };
 
   return (
-    <div className="flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)]">
+    <div className='flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)]'>
       <ChatHeader />
       {variant === ChatVariant.CHAT && (
         <>
-          <ChatList
-            messages={reversedMessages}
-            isHidden={isHidden}
-          />
+          <ChatList messages={reversedMessages} isHidden={isHidden} />
           <ChatForm
             onSubmit={onSubmit}
             value={value}
@@ -101,7 +100,7 @@ export const Chat = ({
 
 export const ChatSkeleton = () => {
   return (
-    <div className="flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2">
+    <div className='flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2'>
       <ChatHeaderSkeleton />
       <ChatListSkeleton />
       <ChatFormSkeleton />

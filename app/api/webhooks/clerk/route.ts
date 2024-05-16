@@ -61,7 +61,7 @@ export async function POST(req: Request) {
         imageUrl: payload.data.image_url,
         stream: {
           create: {
-            name: `${payload.data.username}'s stream`,
+            name: `${payload.data.username}的直播`,
           },
         },
       },

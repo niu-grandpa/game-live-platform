@@ -26,12 +26,15 @@ export const ResultCard = ({ data }: ResultCardProps) => {
         />
         <div className='flex gap-x-3 pl-[12px] pb-[12px]'>
           <UserAvatar
+            showBadge
             username={data.user.username}
             imageUrl={data.user.imageUrl}
             isLive={data.isLive}
           />
           <div className='flex flex-col text-sm overflow-hidden'>
-            <p className='truncate font-semibold text-black'>{data.name}</p>
+            <p className='truncate font-semibold text-black'>
+              {data.name.replace("'s stream", ' 的直播间')}
+            </p>
             <p className='text-muted-foreground'>{data.user.username}</p>
           </div>
         </div>
