@@ -59,10 +59,14 @@ export const Chat = ({
     return messages.sort((a, b) => b.timestamp - a.timestamp);
   }, [messages]);
 
+  useEffect(() => {
+    onMessage?.(reversedMessages[0]?.message);
+  }, [reversedMessages, onMessage]);
+
   const onSubmit = () => {
     if (!send) return;
     send(value);
-    onMessage?.(value);
+    // onMessage?.(value);
     setValue('');
   };
 
